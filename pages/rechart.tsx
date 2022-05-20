@@ -236,14 +236,14 @@ function Rechart() {
               </linearGradient>
             </defs>
             <Radar
-              name="score"
+              name="친구1"
               dataKey="A"
               stroke="#ffc871"
               fill="url(#test)"
               fillOpacity={0.6}
             />
             <Radar
-              name="score"
+              name="친구2"
               dataKey="B"
               stroke="#3366f6"
               fill="url(#test2)"
