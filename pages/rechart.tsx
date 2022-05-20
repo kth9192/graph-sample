@@ -38,7 +38,7 @@ function Rechart() {
     setRadarDatas(radarTestSet);
   }, [dataSets]);
 
-  const handleClick = (data: unknown) => {
+  const handleClick = (data: string) => {
     setClickKey(data);
   };
 
