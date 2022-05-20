@@ -28,7 +28,7 @@ export const radarTestSet = [
     fullMark: 150,
   },
   {
-    subject: '일본ㅌ어',
+    subject: '일본어',
     A: 98,
     B: 130,
     fullMark: 150,

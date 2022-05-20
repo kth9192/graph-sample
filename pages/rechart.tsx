@@ -223,26 +223,30 @@ function Rechart() {
             <PolarGrid />
             <PolarAngleAxis dataKey="subject" />
             <PolarRadiusAxis />
-            <Tooltip content={CustomTooltip} />
-            <Legend
-              align="center"
-              formatter={(props) => (
-                <span className="text-xs font-medium">
-                  {props === 'avg' ? '평균' : '전체'}
-                </span>
-              )}
-            />
+            <Tooltip />
+            <Legend align="center" />
             <defs>
               <linearGradient id="test" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#ffc871" stopOpacity={0.8} />
                 <stop offset="95%" stopColor="#ffc871" stopOpacity={0} />
               </linearGradient>
+              <linearGradient id="test2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#3366f6" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#3366f6" stopOpacity={0} />
+              </linearGradient>
             </defs>
             <Radar
-              name="Mike"
+              name="score"
               dataKey="A"
               stroke="#ffc871"
               fill="url(#test)"
+              fillOpacity={0.6}
+            />
+            <Radar
+              name="score"
+              dataKey="B"
+              stroke="#3366f6"
+              fill="url(#test2)"
               fillOpacity={0.6}
             />
           </RadarChart>
