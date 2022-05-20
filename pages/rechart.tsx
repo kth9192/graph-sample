@@ -19,6 +19,7 @@ import {
   PolarRadiusAxis,
   PolarAngleAxis,
   PolarGrid,
+  Scatter,
 } from 'recharts';
 import {
   NameType,
@@ -30,10 +31,16 @@ function Rechart() {
   const [datas, setdatas] = useState(dataSets);
   const [radarDatas, setRadarDatas] = useState(radarTestSet);
 
+  const [clickKey, setClickKey] = useState('');
+
   useEffect(() => {
     setdatas(dataSets);
     setRadarDatas(radarTestSet);
   }, [dataSets]);
+
+  const handleClick = (data: unknown) => {
+    setClickKey(data);
+  };
 
   const CustomTooltip = ({
     active,
@@ -250,6 +257,106 @@ function Rechart() {
               fillOpacity={0.6}
             />
           </RadarChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="flex flex-col w-fit">
+        <h2 className="mx-auto">복합 차트</h2>
+        <ResponsiveContainer width={800} height={300}>
+          <ComposedChart
+            width={500}
+            height={400}
+            data={dataSets}
+            margin={{
+              top: 20,
+              right: 20,
+              bottom: 20,
+              left: 20,
+            }}
+          >
+            <CartesianGrid stroke="#f5f5f5" />
+            <XAxis dataKey="label" scale="band" />
+            <YAxis />
+            <Tooltip content={CustomTooltip} />
+            <Legend />
+            <Bar dataKey="total" barSize={20} fill="#413ea0" />
+            <Area
+              type="monotone"
+              dataKey="avg"
+              fill="#8884d8"
+              stroke="#8884d8"
+            />
+            <Scatter dataKey="cnt" fill="red" />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="flex flex-col w-fit">
+        <h2 className="mx-auto">도트 클릭</h2>
+        <ResponsiveContainer width={800} height={300}>
+          <ComposedChart height={300} data={datas} barGap={-10}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="label"
+              tick={{ fontSize: 11 }}
+              interval={0}
+              axisLine={false}
+              tickLine={false}
+            />
+            <YAxis />
+            <Tooltip content={CustomTooltip} />
+            <Legend
+              align="center"
+              formatter={(props) => (
+                <span className="text-xs font-medium">
+                  {props === 'avg' ? '평균' : '전체'}
+                </span>
+              )}
+            />
+
+            {clickKey === 'avg' ? (
+              <Area
+                type="monotone"
+                dataKey="avg"
+                fill="#ffc871"
+                stroke="#ffc871"
+                activeDot={{
+                  onClick: (event, payload: any) => handleClick(''),
+                }}
+              />
+            ) : (
+              <Line
+                type="monotone"
+                dataKey="avg"
+                stroke="#ffc871"
+                activeDot={{
+                  onClick: (event, payload: any) =>
+                    handleClick(payload.dataKey),
+                }}
+              />
+            )}
+            {clickKey === 'total' ? (
+              <Area
+                type="monotone"
+                dataKey="total"
+                fill="#3366f6"
+                stroke="#3366f6"
+                activeDot={{
+                  onClick: (event, payload: any) => handleClick(''),
+                }}
+              />
+            ) : (
+              <Line
+                type="monotone"
+                dataKey="total"
+                stroke="#3366f6"
+                activeDot={{
+                  onClick: (event, payload: any) =>
+                    handleClick(payload.dataKey),
+                }}
+              />
+            )}
+          </ComposedChart>
         </ResponsiveContainer>
       </div>
     </div>
