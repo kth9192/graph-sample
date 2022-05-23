@@ -1,0 +1,16 @@
+.dashboard {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    box-sizing: border-box;
+    grid-auto-flow: row dense;
+
+    // .gridItem:nth-child(1) {
+    //     grid-column: 1 / span 2;
+    // }
+
+    // .gridItem:nth-child(2) {
+    //     grid-column: 1 / span 2;
+    // }
+}

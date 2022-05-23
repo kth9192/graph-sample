@@ -26,6 +26,7 @@ import {
   ValueType,
 } from 'recharts/types/component/DefaultTooltipContent';
 import { dataSets, radarTestSet } from '../shared/resource';
+import layoutStyle from '../styles/layout.module.scss';
 
 function Rechart() {
   const [datas, setdatas] = useState(dataSets);
@@ -65,11 +66,11 @@ function Rechart() {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-4 flex-col w-full h-screen">
-      <div className="flex flex-col w-fit">
+    <div className={layoutStyle.dashboard}>
+      <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">다중 바</h2>
-        <ResponsiveContainer width={800} height={300}>
-          <BarChart height={300} data={datas}>
+        <ResponsiveContainer aspect={2}>
+          <BarChart data={datas}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="label"
@@ -95,10 +96,10 @@ function Rechart() {
         </ResponsiveContainer>
       </div>
 
-      <div className="flex flex-col w-fit">
+      <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">다중 바 겹치기</h2>
-        <ResponsiveContainer width={800} height={300}>
-          <BarChart height={300} data={datas} barGap={-10}>
+        <ResponsiveContainer aspect={2}>
+          <BarChart data={datas} barGap={-10}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="label"
@@ -124,10 +125,10 @@ function Rechart() {
         </ResponsiveContainer>
       </div>
 
-      <div className="flex flex-col w-fit">
+      <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">다중 라인</h2>
-        <ResponsiveContainer width={800} height={300}>
-          <LineChart height={300} data={datas} barGap={-10}>
+        <ResponsiveContainer aspect={2}>
+          <LineChart data={datas} barGap={-10}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="label"
@@ -153,10 +154,10 @@ function Rechart() {
         </ResponsiveContainer>
       </div>
 
-      <div className="flex flex-col w-fit">
+      <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">라인 + 영역 + 그라디언트</h2>
-        <ResponsiveContainer width={800} height={300}>
-          <ComposedChart height={300} data={datas} barGap={-10}>
+        <ResponsiveContainer aspect={2}>
+          <ComposedChart data={datas} barGap={-10}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="label"
@@ -194,10 +195,10 @@ function Rechart() {
         </ResponsiveContainer>
       </div>
 
-      <div className="flex flex-col w-fit">
+      <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">스택바</h2>
-        <ResponsiveContainer width={800} height={300}>
-          <BarChart height={300} data={datas} barGap={-10}>
+        <ResponsiveContainer aspect={2}>
+          <BarChart data={datas} barGap={-10}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="label"
@@ -223,10 +224,10 @@ function Rechart() {
         </ResponsiveContainer>
       </div>
 
-      <div className="flex flex-col w-fit">
+      <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">레이더</h2>
-        <ResponsiveContainer width={800} height={300}>
-          <RadarChart height={300} data={radarDatas} barGap={-10}>
+        <ResponsiveContainer aspect={2}>
+          <RadarChart data={radarDatas} barGap={-10}>
             <PolarGrid />
             <PolarAngleAxis dataKey="subject" />
             <PolarRadiusAxis />
@@ -260,12 +261,10 @@ function Rechart() {
         </ResponsiveContainer>
       </div>
 
-      <div className="flex flex-col w-fit">
+      <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">복합 차트</h2>
-        <ResponsiveContainer width={800} height={300}>
+        <ResponsiveContainer aspect={2}>
           <ComposedChart
-            width={500}
-            height={400}
             data={dataSets}
             margin={{
               top: 20,
@@ -291,10 +290,10 @@ function Rechart() {
         </ResponsiveContainer>
       </div>
 
-      <div className="flex flex-col w-fit">
+      <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">도트 클릭</h2>
-        <ResponsiveContainer width={800} height={300}>
-          <ComposedChart height={300} data={datas} barGap={-10}>
+        <ResponsiveContainer aspect={2}>
+          <ComposedChart data={datas} barGap={-10}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
               dataKey="label"
