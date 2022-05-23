@@ -54,10 +54,10 @@ function Rechart() {
           <p className="mb-2 font-bold ">{label}</p>
           <p
             style={{ color: payload[0].color }}
-          >{`전체 : ${payload[0].payload.total}건`}</p>
+          >{`평균 : ${payload[0].payload.total}건`}</p>
           <p
             style={{ color: payload[1].color }}
-          >{`평균 : ${payload[0].payload.avg}건`}</p>
+          >{`전체 : ${payload[0].payload.avg}건`}</p>
         </div>
       );
     }

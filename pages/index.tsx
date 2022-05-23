@@ -14,11 +14,19 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Link href="/rechart">
-          <button className="w-[152px] h-[48px] bg-purple-600 text-white rounded font-bold">
-            rechart예제
-          </button>
-        </Link>
+        <div className="flex flex-col gap-4">
+          <Link href="/rechart">
+            <button className="w-[152px] h-[48px] bg-purple-500 text-white rounded font-bold">
+              rechart예제
+            </button>
+          </Link>
+
+          <Link href="/apex">
+            <button className="w-[152px] h-[48px] bg-teal-500 text-white rounded font-bold">
+              apex chart 예제
+            </button>
+          </Link>
+        </div>
       </main>
 
       <footer className={styles.footer}>
