@@ -5,6 +5,7 @@ import {
   resourceFive,
   resourceFour,
   resourceOne,
+  resourceSix,
   resourceThree,
   resourceTwo,
 } from '../shared/resource';
@@ -68,6 +69,17 @@ function Apex() {
             type="radar"
             options={resourceFive.options}
             series={resourceFive.series}
+          ></ApexChart>
+        </div>
+      </div>
+      <div className="flex flex-col items-center w-full h-full">
+        <h2>반대 차트</h2>
+
+        <div className="w-full flex-1">
+          <ApexChart
+            type="bar"
+            options={resourceSix.options}
+            series={resourceSix.series}
           ></ApexChart>
         </div>
       </div>

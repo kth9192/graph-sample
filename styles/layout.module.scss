@@ -1,7 +1,7 @@
 .dashboard {
     display: grid;
     width: 80%;
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     box-sizing: border-box;
     grid-auto-flow: row dense;

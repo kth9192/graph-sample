@@ -20,6 +20,7 @@ import {
   PolarAngleAxis,
   PolarGrid,
   Scatter,
+  ReferenceLine,
 } from 'recharts';
 import {
   NameType,
@@ -356,6 +357,51 @@ function Rechart() {
               />
             )}
           </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="flex flex-col w-full row-span-1">
+        <h2 className="mx-auto">긍부정 차트</h2>
+        <ResponsiveContainer aspect={2}>
+          <BarChart
+            layout="vertical"
+            data={datas.map((data) => {
+              return {
+                label: data.label,
+                avg: data.avg > data.total ? data.avg : -data.avg,
+                total: data.avg < data.total ? data.total : -data.total,
+              };
+            })}
+            margin={{
+              top: 20,
+              right: 30,
+              left: 30,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              // tick={{ fontSize: 11 }}
+              // interval={0}
+              // axisLine={false}
+              // tickLine={false}
+              type="number"
+            />
+            <YAxis dataKey="label" type="category" />
+            <Tooltip content={CustomTooltip} />
+            <Legend
+              align="center"
+              formatter={(props) => (
+                <span className="text-xs font-medium">
+                  {props === 'avg' ? '평균' : '전체'}
+                </span>
+              )}
+            />
+            <ReferenceLine x={0} stroke="#000" />
+
+            <Bar dataKey="avg" fill="#3366f6" />
+            <Bar dataKey="total" fill="#ffc871" />
+          </BarChart>
         </ResponsiveContainer>
       </div>
     </div>

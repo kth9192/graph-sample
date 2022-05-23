@@ -79,6 +79,7 @@ export const resourceOne = {
       // },
       // redrawOnParentResize: true,
     },
+    colors: ['#3366f6', '#ffc871'],
     xaxis: {
       categories: dataSets.map((data) => data.label),
     },
@@ -260,6 +261,42 @@ export const resourceFive = {
     },
     fill: {
       opacity: 0.1,
+    },
+  },
+};
+
+export const resourceSix = {
+  series: [
+    {
+      name: '긍장 언급량',
+      data: dataSets.map((data) => data.total),
+    },
+    { name: '부정 언급량', data: dataSets.map((data) => -data.avg) },
+  ],
+  options: {
+    // fill: {
+    //   colors: ['#F44336', '#E91E63', '#9C27B0'],
+    // },
+    chart: {
+      id: 'negative',
+      stacked: true,
+
+      // events: {
+      //   mounted: (chart: { windowResizeHandler: () => void }) => {
+      //     chart.windowResizeHandler();
+      //   },
+      // },
+      // redrawOnParentResize: true,
+    },
+    colors: colorPalette,
+
+    xaxis: {
+      categories: dataSets.map((data) => data.label),
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true,
+      },
     },
   },
 };
