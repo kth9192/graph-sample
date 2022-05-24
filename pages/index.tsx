@@ -26,6 +26,12 @@ const Home: NextPage = () => {
               apex chart 예제
             </button>
           </Link>
+
+          <Link href="/dendrogram">
+            <button className="w-[152px] h-[48px] bg-teal-500 text-white rounded font-bold">
+              dendrogram 예제
+            </button>
+          </Link>
         </div>
       </main>
 
