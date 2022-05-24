@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 import {
   dataSets,
+  resourceEight,
   resourceFive,
   resourceFour,
   resourceOne,
+  resourceSeven,
   resourceSix,
   resourceThree,
   resourceTwo,
@@ -80,6 +82,36 @@ function Apex() {
             type="bar"
             options={resourceSix.options}
             series={resourceSix.series}
+          ></ApexChart>
+        </div>
+      </div>
+      <div className="flex flex-col items-center w-full h-full">
+        <h2> 파이 차트</h2>
+        <div className="w-full flex-1">
+          <ApexChart
+            type="pie"
+            options={resourceSeven.options}
+            series={resourceSeven.series}
+          ></ApexChart>
+        </div>
+      </div>
+      <div className="flex flex-col items-center w-full h-full">
+        <h2> 도넛 차트</h2>
+        <div className="w-full flex-1">
+          <ApexChart
+            type="donut"
+            options={resourceSeven.options}
+            series={resourceSeven.series}
+          ></ApexChart>
+        </div>
+      </div>
+      <div className="flex flex-col items-center w-full h-full">
+        <h2>트리맵 차트</h2>
+        <div className="w-full flex-1">
+          <ApexChart
+            type="treemap"
+            options={resourceEight.options}
+            series={resourceEight.series}
           ></ApexChart>
         </div>
       </div>

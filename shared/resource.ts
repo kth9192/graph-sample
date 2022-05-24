@@ -20,6 +20,74 @@ export const dataSets = [
   { label: '보배드림', avg: 10, total: 1000 },
 ];
 
+export const TreeMapSet = [
+  {
+    name: '애플',
+    size: 100,
+    fluctuation: 10.2,
+  },
+  {
+    name: '마이크로소프트',
+    size: 95,
+    fluctuation: 10,
+  },
+  {
+    name: '알파벳',
+    size: 88,
+    fluctuation: 1.4,
+  },
+  {
+    name: '구글',
+    size: 85,
+    fluctuation: 2.7,
+  },
+  {
+    name: '테슬라',
+    size: 80,
+    fluctuation: 5.3,
+  },
+  {
+    name: '엔비디아',
+    size: 70,
+    fluctuation: 5.1,
+  },
+  {
+    name: '메타플랫폼스',
+    size: 74,
+    fluctuation: -2.3,
+  },
+  {
+    name: 'TSMC',
+    size: 66,
+    fluctuation: 2.1,
+  },
+  {
+    name: '유나이티드헬스그룹',
+    size: 40,
+    fluctuation: 0.5,
+  },
+  {
+    name: '비자',
+    size: 45,
+    fluctuation: 1.12,
+  },
+  {
+    name: '존슨앤존슨',
+    size: 50,
+    fluctuation: -2.31,
+  },
+  {
+    name: 'JP모간 체이스',
+    size: 50,
+    fluctuation: 3.98,
+  },
+  {
+    name: '삼성',
+    size: 10,
+    fluctuation: 0.01,
+  },
+];
+
 export const radarTestSet = [
   {
     subject: '수학',
@@ -85,6 +153,10 @@ export const resourceOne = {
     },
     plotOptions: {
       bar: {},
+    },
+    tooltip: {
+      shared: true,
+      intersect: false,
     },
     dataLabels: {
       enabled: false,
@@ -268,7 +340,7 @@ export const resourceFive = {
 export const resourceSix = {
   series: [
     {
-      name: '긍장 언급량',
+      name: '긍정 언급량',
       data: dataSets.map((data) => data.total),
     },
     { name: '부정 언급량', data: dataSets.map((data) => -data.avg) },
@@ -292,10 +364,154 @@ export const resourceSix = {
 
     xaxis: {
       categories: dataSets.map((data) => data.label),
+      show: false,
+      labels: {
+        show: false,
+      },
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+    },
+    tooltip: {
+      shared: true,
+      intersect: false,
+    },
+    yaxis: {
+      axisTicks: {
+        show: false,
+      },
     },
     plotOptions: {
       bar: {
         horizontal: true,
+      },
+    },
+  },
+};
+
+export const resourceSeven = {
+  series: [60, 30, 10],
+  options: {
+    chart: { id: 'pie' },
+    labels: ['긍정 언급량', '중립 언급량', '부정 언급량'],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200,
+          },
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    ],
+  },
+};
+
+export const resourceEight = {
+  series: [
+    {
+      data: [
+        {
+          x: '애플',
+          y: 10.2,
+        },
+        {
+          x: '마이크로소프트',
+          y: 10,
+        },
+        {
+          x: '알파벳',
+          y: 1.4,
+        },
+        {
+          x: '구글',
+          y: 2.7,
+        },
+        {
+          x: '테슬라',
+          y: 5.3,
+        },
+        {
+          x: '엔비디아',
+          y: 5.1,
+        },
+        {
+          x: '메타플랫폼스',
+          y: -2.3,
+        },
+        {
+          x: 'TSMC',
+          y: 2.1,
+        },
+        {
+          x: '유나이티드헬스그룹',
+          y: 0.5,
+        },
+        {
+          x: '비자',
+          y: 1.12,
+        },
+        {
+          x: '존슨앤존슨',
+          y: -2.31,
+        },
+        {
+          x: 'JP모간 체이스',
+          y: 3.98,
+        },
+        {
+          x: '삼성',
+          y: 0.01,
+        },
+      ],
+    },
+  ],
+  options: {
+    chart: { id: 'tree' },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200,
+          },
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    ],
+    dataLabels: {
+      enabled: true,
+      formatter: function (text: string, op: { value: number }) {
+        return text + ' ' + (op.value > 0 ? `+${op.value}` : `${op.value}`);
+      },
+    },
+    plotOptions: {
+      treemap: {
+        enableShades: true,
+
+        reverseNegativeShade: true,
+        colorScale: {
+          ranges: [
+            {
+              from: -6,
+              to: 0,
+              color: '#CD363A',
+            },
+            {
+              from: 0.001,
+              to: 6,
+              color: '#4AABFC',
+            },
+          ],
+        },
       },
     },
   },

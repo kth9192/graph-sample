@@ -21,17 +21,49 @@ import {
   PolarGrid,
   Scatter,
   ReferenceLine,
+  PieChart,
+  Pie,
+  PieLabel,
+  Treemap,
 } from 'recharts';
 import {
   NameType,
   ValueType,
 } from 'recharts/types/component/DefaultTooltipContent';
-import { dataSets, radarTestSet } from '../shared/resource';
+import { dataSets, radarTestSet, TreeMapSet } from '../shared/resource';
 import layoutStyle from '../styles/layout.module.scss';
+
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index,
+}: any) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? 'start' : 'end'}
+      dominantBaseline="central"
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
 
 function Rechart() {
   const [datas, setdatas] = useState(dataSets);
   const [radarDatas, setRadarDatas] = useState(radarTestSet);
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
   const [clickKey, setClickKey] = useState('');
 
@@ -42,6 +74,28 @@ function Rechart() {
 
   const handleClick = (data: string) => {
     setClickKey(data);
+  };
+
+  const CustomPieTooltip = ({
+    active,
+    payload,
+    label,
+  }: TooltipProps<ValueType, NameType>) => {
+    if (active && payload && payload.length) {
+      const { fill } = payload[0]?.payload;
+
+      return (
+        <div className="custom-tooltip">
+          <p>주문수</p>
+          <p
+            className="label"
+            style={{ color: fill }}
+          >{`${payload[0].name} : ${payload[0].value}`}</p>
+        </div>
+      );
+    }
+
+    return null;
   };
 
   const CustomTooltip = ({
@@ -59,6 +113,37 @@ function Rechart() {
           <p
             style={{ color: payload[1].color }}
           >{`전체 : ${payload[0].payload.avg}건`}</p>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  const CustomTreeTooltip = ({
+    active,
+    payload,
+    label,
+  }: TooltipProps<ValueType, NameType>) => {
+    if (active && payload && payload.length) {
+      console.log(payload);
+
+      return (
+        <div className="bg-white rounded shadow p-4">
+          <p className="mb-2 font-bold ">{label}</p>
+          <div className="flex gap-1">
+            <span>{payload[0].payload.name}</span> :
+            <span
+              className={
+                payload[0].payload.fluctuation > 0
+                  ? 'text-red-400'
+                  : 'text-blue-400'
+              }
+            >
+              {payload[0].payload.fluctuation > 0 && '+'}
+              {payload[0].payload.fluctuation}
+            </span>
+          </div>
         </div>
       );
     }
@@ -96,7 +181,6 @@ function Rechart() {
           </BarChart>
         </ResponsiveContainer>
       </div>
-
       <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">다중 바 겹치기</h2>
         <ResponsiveContainer aspect={2}>
@@ -125,7 +209,6 @@ function Rechart() {
           </BarChart>
         </ResponsiveContainer>
       </div>
-
       <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">다중 라인</h2>
         <ResponsiveContainer aspect={2}>
@@ -154,7 +237,6 @@ function Rechart() {
           </LineChart>
         </ResponsiveContainer>
       </div>
-
       <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">라인 + 영역 + 그라디언트</h2>
         <ResponsiveContainer aspect={2}>
@@ -195,7 +277,6 @@ function Rechart() {
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-
       <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">스택바</h2>
         <ResponsiveContainer aspect={2}>
@@ -224,7 +305,6 @@ function Rechart() {
           </BarChart>
         </ResponsiveContainer>
       </div>
-
       <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">레이더</h2>
         <ResponsiveContainer aspect={2}>
@@ -261,7 +341,6 @@ function Rechart() {
           </RadarChart>
         </ResponsiveContainer>
       </div>
-
       <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">복합 차트</h2>
         <ResponsiveContainer aspect={2}>
@@ -290,7 +369,6 @@ function Rechart() {
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-
       <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">도트 클릭</h2>
         <ResponsiveContainer aspect={2}>
@@ -359,7 +437,6 @@ function Rechart() {
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-
       <div className="flex flex-col w-full row-span-1">
         <h2 className="mx-auto">긍부정 차트</h2>
         <ResponsiveContainer aspect={2}>
@@ -402,6 +479,64 @@ function Rechart() {
             <Bar dataKey="avg" fill="#3366f6" />
             <Bar dataKey="total" fill="#ffc871" />
           </BarChart>
+        </ResponsiveContainer>
+      </div>{' '}
+      <div className="flex flex-col w-full row-span-1">
+        <h2 className="mx-auto">파이 차트</h2>
+        <ResponsiveContainer aspect={2}>
+          <PieChart>
+            <Pie
+              data={[
+                { name: 'Group A', value: 400 },
+                { name: 'Group B', value: 300 },
+                { name: 'Group C', value: 300 },
+                { name: 'Group D', value: 200 },
+              ]}
+              cx="50%"
+              cy="50%"
+              dataKey={'value'}
+              labelLine={false}
+              label={renderCustomizedLabel}
+            >
+              {[
+                { name: 'Group A', value: 400 },
+                { name: 'Group B', value: 300 },
+                { name: 'Group C', value: 300 },
+                { name: 'Group D', value: 200 },
+              ].map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}{' '}
+              <Tooltip />
+              <Legend
+                align="center"
+                formatter={(props) => (
+                  <span className="text-xs font-medium">
+                    {props === 'avg' ? '평균' : '전체'}
+                  </span>
+                )}
+              />
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="flex flex-col w-full row-span-1">
+        <h2 className="mx-auto">파이 차트</h2>
+        <ResponsiveContainer aspect={2}>
+          <Treemap
+            width={400}
+            height={200}
+            data={TreeMapSet}
+            dataKey="size"
+            aspectRatio={16 / 9}
+            stroke="#fff"
+            fill="#8884d8"
+          >
+            <Tooltip content={CustomTreeTooltip} />
+            <Legend />
+          </Treemap>
         </ResponsiveContainer>
       </div>
     </div>
