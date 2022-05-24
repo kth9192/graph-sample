@@ -30,6 +30,7 @@ import {
   NameType,
   ValueType,
 } from 'recharts/types/component/DefaultTooltipContent';
+import { CustomizedContent } from '../components/customizedContent';
 import { dataSets, radarTestSet, TreeMapSet } from '../shared/resource';
 import layoutStyle from '../styles/layout.module.scss';
 
@@ -126,8 +127,6 @@ function Rechart() {
     label,
   }: TooltipProps<ValueType, NameType>) => {
     if (active && payload && payload.length) {
-      console.log(payload);
-
       return (
         <div className="bg-white rounded shadow p-4">
           <p className="mb-2 font-bold ">{label}</p>
@@ -523,7 +522,7 @@ function Rechart() {
         </ResponsiveContainer>
       </div>
       <div className="flex flex-col w-full row-span-1">
-        <h2 className="mx-auto">파이 차트</h2>
+        <h2 className="mx-auto">트리맵 차트</h2>
         <ResponsiveContainer aspect={2}>
           <Treemap
             width={400}
@@ -533,6 +532,7 @@ function Rechart() {
             aspectRatio={16 / 9}
             stroke="#fff"
             fill="#8884d8"
+            content={<CustomizedContent colors={['4BACFD', 'AB4B4C']} />}
           >
             <Tooltip content={CustomTreeTooltip} />
             <Legend />
