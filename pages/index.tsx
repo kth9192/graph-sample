@@ -2,9 +2,12 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import styles from '../styles/Home.module.scss';
 
 const Home: NextPage = () => {
+  useEffect(() => {}, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -28,7 +31,7 @@ const Home: NextPage = () => {
           </Link>
 
           <Link href="/dendrogram">
-            <button className="w-[152px] h-[48px] bg-teal-500 text-white rounded font-bold">
+            <button className="w-[152px] h-[48px] bg-red-500 text-white rounded font-bold">
               dendrogram 예제
             </button>
           </Link>
