@@ -77,6 +77,12 @@ function SunburstChart() {
                   key={`${d.data.name}-${i}`}
                   fill={getColor(d)}
                   d={arc(d) ?? undefined}
+                  onMouseEnter={(event) =>
+                    (event.currentTarget.style.fill = '#333')
+                  }
+                  onMouseLeave={(event) =>
+                    (event.currentTarget.style.fill = getColor(d))
+                  }
                 >
                   <text>
                     {d

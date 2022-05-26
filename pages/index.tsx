@@ -30,9 +30,21 @@ const Home: NextPage = () => {
             </button>
           </Link>
 
+          <Link href="/nivo">
+            <button className="w-[152px] h-[48px] bg-fuchsia-500 text-white rounded font-bold">
+              nivo 예제
+            </button>
+          </Link>
+
           <Link href="/dendrogram">
             <button className="w-[152px] h-[48px] bg-red-500 text-white rounded font-bold">
               dendrogram 예제
+            </button>
+          </Link>
+
+          <Link href="/sunburst">
+            <button className="w-[152px] h-[48px] bg-orange-500 text-white rounded font-bold">
+              sunburst 예제
             </button>
           </Link>
         </div>

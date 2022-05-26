@@ -1,6 +1,7 @@
 .dashboard {
     display: grid;
     width: 80%;
+    min-height: 100%;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     box-sizing: border-box;
