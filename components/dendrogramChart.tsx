@@ -67,12 +67,13 @@ function DendrogramChart() {
         .then((data) => {
           const nodes: DendrogramNode[] = [];
           const links: DendrogramLink[] = [];
-          data.forEach(({ size, path }: any) => {
-            const levels = path?.split('/'),
-              level = levels?.length - 1,
-              module = level > 0 ? levels[1] : null,
-              leaf = levels?.pop(),
-              parent = levels?.join('/');
+
+          data.forEach(({ size, path, module }: any) => {
+            const levels = path?.split('/');
+            const level = levels?.length - 1;
+            // const module = level > 0 ? levels[1] : '';
+            const leaf = levels?.pop();
+            const parent = levels?.join('/');
 
             const node = {
               path,
@@ -136,7 +137,7 @@ function DendrogramChart() {
           //   ) => nodePaint(node, '#B7CAFF', ctx, globalScale)}
           nodeVal={(node: any) => 100 / (node.level + 1)}
           nodeLabel="path"
-          nodeAutoColorBy="module"
+          // nodeAutoColorBy="module"
           d3VelocityDecay={0.3}
           //   linkDirectionalArrowLength={0.1}
         />
