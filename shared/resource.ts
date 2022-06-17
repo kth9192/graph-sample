@@ -414,7 +414,7 @@ export const resourceSeven = {
             total: {
               show: true,
               label: '언급량 비율',
-              formatter: (val) => (typeof val === 'number' ? val : '0'),
+              formatter: (val) => (typeof val === 'number' ? val : 0),
             },
           },
         },
