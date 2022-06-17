@@ -1,5 +1,5 @@
 export const dataSets = [
-  { label: '트위터', avg: 1230, total: 2000 },
+  { label: '트위터', avg: 1, total: 2000 },
   { label: '인스타그램', avg: 4230, total: 3000 },
 
   { label: '유튜브', avg: 340, total: 1000 },
@@ -146,6 +146,12 @@ export const resourceOne = {
       //   },
       // },
       // redrawOnParentResize: true,
+
+      events: {
+        click: function (event, chartContext, config) {
+          console.log(event, chartContext, config);
+        },
+      },
     },
     colors: ['#3366f6', '#ffc871'],
     xaxis: {
@@ -380,6 +386,9 @@ export const resourceSix = {
       intersect: false,
     },
     yaxis: {
+      min: -5000,
+      max: 5000,
+
       axisTicks: {
         show: false,
       },
@@ -397,6 +406,20 @@ export const resourceSeven = {
   options: {
     chart: { id: 'pie' },
     labels: ['긍정 언급량', '중립 언급량', '부정 언급량'],
+    plotOptions: {
+      pie: {
+        donut: {
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: '언급량 비율',
+              formatter: (val) => (typeof val === 'number' ? val : '-'),
+            },
+          },
+        },
+      },
+    },
     responsive: [
       {
         breakpoint: 480,
@@ -513,6 +536,118 @@ export const resourceEight = {
           ],
         },
       },
+    },
+  },
+};
+
+export const resourceNine = {
+  series: [
+    {
+      name: '인스타그램',
+      data: [[16.4, 5.4]],
+    },
+    {
+      name: '유튜브',
+      data: [[-36.4, 13.4]],
+    },
+    {
+      name: '트위터',
+      data: [[-36.4, -13.4]],
+    },
+    {
+      name: '네이버블로그',
+      data: [[36.4, -13.4]],
+    },
+  ],
+  options: {
+    chart: {
+      id: 'scatter',
+    },
+    grid: {
+      yaxis: {
+        lines: {
+          show: false,
+        },
+      },
+    },
+    xaxis: {
+      tickAmount: 10,
+      labels: {
+        formatter: function (val) {
+          return parseFloat(val).toFixed(1);
+        },
+      },
+    },
+
+    yaxis: {
+      tickAmount: 7,
+    },
+    annotations: {
+      yaxis: [
+        {
+          y: 0,
+          strokeDashArray: 0,
+          borderColor: '#111',
+          borderWidth: 1,
+          opacity: 1,
+        },
+      ],
+      xaxis: [
+        {
+          x: 0,
+          strokeDashArray: 0,
+          borderColor: '#111',
+          borderWidth: 1,
+          opacity: 1,
+        },
+      ],
+    },
+  },
+};
+
+export const multilineOpt = {
+  series: [
+    {
+      name: '트위터',
+      type: 'line',
+      data: dataSets.map((data) => data.total),
+    },
+    {
+      name: '인스타그램',
+      type: 'line',
+      data: dataSets.map((data) => data.avg),
+    },
+    {
+      name: '유튜브',
+      type: 'line',
+      data: dataSets.map((data) =>
+        Math.floor(Math.random() * (10000 - 100) + 100),
+      ),
+    },
+  ],
+  options: {
+    colors: colorPalette,
+    chart: {
+      id: 'complex',
+      // events: {
+      //   mounted: (chart: { windowResizeHandler: () => void }) => {
+      //     chart.windowResizeHandler();
+      //   },
+      // },
+      // redrawOnParentResize: true,
+    },
+
+    fill: {
+      type: 'solid',
+      opacity: [1, 1, 0.15],
+    },
+
+    xaxis: {
+      categories: dataSets.map((data) => data.label),
+    },
+
+    dataLabels: {
+      enabled: false,
     },
   },
 };

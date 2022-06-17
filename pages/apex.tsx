@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 import {
   dataSets,
+  multilineOpt,
   resourceEight,
   resourceFive,
   resourceFour,
+  resourceNine,
   resourceOne,
   resourceSeven,
   resourceSix,
@@ -112,6 +114,41 @@ function Apex() {
             type="treemap"
             options={resourceEight.options}
             series={resourceEight.series}
+          ></ApexChart>
+        </div>
+      </div>
+      <div className="flex flex-col items-center w-full h-full">
+        <h2>사분면 차트</h2>
+        <div className="relative w-full h-full flex-1">
+          <span className="absolute top-16 left-20 text-[#72777E]">
+            소수의 긍정
+          </span>
+          <span className="absolute top-16 right-20 text-[#72777E]">
+            다수의 긍정
+          </span>
+
+          <span className="absolute bottom-28 left-20 text-[#72777E]">
+            소수의 부정
+          </span>
+          <span className="absolute bottom-28 right-20 text-[#72777E]">
+            다수의 부정
+          </span>
+
+          <ApexChart
+            type="scatter"
+            options={resourceNine.options}
+            series={resourceNine.series}
+          ></ApexChart>
+        </div>
+      </div>
+      <div className="flex flex-col items-center w-full h-full">
+        <h2>다중 라인 차트</h2>
+
+        <div className="w-full flex-1">
+          <ApexChart
+            type="line"
+            options={multilineOpt.options}
+            series={multilineOpt.series}
           ></ApexChart>
         </div>
       </div>
