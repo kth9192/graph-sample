@@ -384,6 +384,20 @@ export const resourceSix = {
     tooltip: {
       shared: true,
       intersect: false,
+
+      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+        return (
+          '<div class="custom-tooltip">' +
+          '<span class="day">' +
+          '22.11.11' +
+          '</span>' +
+          `<div class="row">
+          <span class="dot blue" />
+          <div>${123}</div>
+          </div>` +
+          '</div>'
+        );
+      },
     },
     yaxis: {
       min: -5000,
@@ -557,6 +571,14 @@ export const resourceNine = {
     {
       name: '네이버블로그',
       data: [{ x: 36.4, y: -13.4 }],
+    },
+    {
+      name: '네이버카페',
+      data: [{ x: 36.4, y: 0 }],
+    },
+    {
+      name: '암튼네이버',
+      data: [{ x: 0, y: 36.4 }],
     },
 
     // {
