@@ -119,23 +119,28 @@ function Apex() {
       </div>
       <div className="flex flex-col items-center w-full h-full">
         <h2>사분면 차트</h2>
-        <div className="relative w-full h-full flex-1">
-          <span className="absolute top-16 left-20 text-[#72777E]">
-            소수의 긍정
-          </span>
-          <span className="absolute top-16 right-20 text-[#72777E]">
-            다수의 긍정
-          </span>
+        <div className="relative w-full  flex p-8 justify-center items-center">
+          <div className="absolute w-full flex-1 justify-between flex my-auto">
+            <span className=" top-16 left-20 text-[#72777E] whitespace-nowrap">
+              부정
+            </span>
+            <span className=" top-16 right-20 text-[#72777E] whitespace-nowrap">
+              긍정
+            </span>
+          </div>
 
-          <span className="absolute bottom-28 left-20 text-[#72777E]">
-            소수의 부정
-          </span>
-          <span className="absolute bottom-28 right-20 text-[#72777E]">
-            다수의 부정
-          </span>
-
+          <div className="absolute  h-full flex-1 justify-between flex mx-auto py-[30px] flex-col">
+            <span className=" top-16 left-20 text-[#72777E] whitespace-nowrap">
+              게시글 많음
+            </span>
+            <span className=" top-16 right-20 text-[#72777E] whitespace-nowrap">
+              게시글 적음
+            </span>
+          </div>
           <ApexChart
             type="scatter"
+            width={'852px'}
+            height={'200'}
             options={resourceNine.options}
             series={resourceNine.series}
           ></ApexChart>

@@ -559,32 +559,38 @@ export const resourceNine = {
     {
       name: '인스타그램',
       data: [{ x: 16.4, y: 5.4 }],
+      color: '#3367F6',
     },
     {
       name: '유튜브',
       data: [{ x: -36.4, y: 13.4 }],
+      color: '#FF6161',
     },
     {
       name: '트위터',
       data: [{ x: -36.4, y: -13.4 }],
+      color: '#FF6161',
     },
     {
       name: '네이버블로그',
       data: [{ x: 36.4, y: -13.4 }],
+      color: '#3367F6',
     },
     {
       name: '네이버카페',
       data: [{ x: 36.4, y: 0 }],
+      color: '#3367F6',
     },
     {
       name: '암튼네이버',
       data: [{ x: 0, y: 36.4 }],
+      color: '#3367F6',
     },
 
-    // {
-    //   name: '유튜브',
-    //   data: [[-36.4, 13.4]],
-    // },
+    {
+      name: '네이버뉴스',
+      data: [{ x: 0, y: -36.4 }],
+    },
     // {
     //   name: '트위터',
     //   data: [[-36.4, -13.4]],
@@ -597,6 +603,12 @@ export const resourceNine = {
   options: {
     chart: {
       id: 'scatter',
+      toolbar: {
+        show: false,
+      },
+      zoom: {
+        enabled: false,
+      },
     },
     grid: {
       yaxis: {
@@ -608,21 +620,30 @@ export const resourceNine = {
     xaxis: {
       tickAmount: 10,
       labels: {
+        show: false,
         formatter: function (val) {
           return parseFloat(val).toFixed(1);
         },
       },
+      axisBorder: { show: false },
     },
 
     yaxis: {
       tickAmount: 7,
+      labels: {
+        show: false,
+      },
+    },
+    legend: { show: false },
+    markers: {
+      radius: 10,
     },
     annotations: {
       yaxis: [
         {
           y: 0,
           strokeDashArray: 0,
-          borderColor: '#111',
+          borderColor: '#DCE2EA',
           borderWidth: 1,
           opacity: 1,
         },
@@ -631,7 +652,7 @@ export const resourceNine = {
         {
           x: 0,
           strokeDashArray: 0,
-          borderColor: '#111',
+          borderColor: '#DCE2EA',
           borderWidth: 1,
           opacity: 1,
         },
