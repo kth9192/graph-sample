@@ -1,3 +1,5 @@
+import { ApexOptions } from 'apexcharts';
+
 export const dataSets = [
   { label: '트위터', avg: 1, total: 2000 },
   { label: '인스타그램', avg: 4230, total: 3000 },
@@ -1080,4 +1082,37 @@ export const sunData = {
       ],
     },
   ],
+};
+
+interface Annotation {
+  sentence: string;
+  max: number;
+  min: number;
+}
+
+export const detectionResource = ({ sentence, max, min }: Annotation) => {
+  return {
+    chart: {
+      id: 'abnormal',
+
+      zoom: { enabled: false },
+      colors: ['#3367f6'],
+    },
+    annotations: {
+      yaxis: [
+        {
+          y: max,
+          y2: min,
+          borderColor: '#00E396',
+          label: {
+            borderColor: '#00E396',
+            style: {
+              color: '#00E396',
+            },
+            text: sentence,
+          },
+        },
+      ],
+    },
+  } as ApexOptions;
 };

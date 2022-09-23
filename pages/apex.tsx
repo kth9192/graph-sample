@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import {
   dataSets,
+  detectionResource,
   multilineOpt,
   resourceEight,
   resourceFive,
@@ -140,7 +141,7 @@ function Apex() {
           <ApexChart
             type="scatter"
             width={'852px'}
-            height={'200'}
+            height={'200px'}
             options={resourceNine.options}
             series={resourceNine.series}
           ></ApexChart>
@@ -154,6 +155,26 @@ function Apex() {
             type="line"
             options={multilineOpt.options}
             series={multilineOpt.series}
+          ></ApexChart>
+        </div>
+      </div>
+      <div className="flex flex-col items-center w-full h-full">
+        <h2> 한계 차트</h2>
+
+        <div className="w-full flex-1">
+          <ApexChart
+            options={detectionResource({
+              max: 2500,
+              min: 1000,
+              sentence: '이상치',
+            })}
+            series={[
+              {
+                name: '기준치',
+                type: 'line',
+                data: dataSets.map((data) => data.total),
+              },
+            ]}
           ></ApexChart>
         </div>
       </div>
