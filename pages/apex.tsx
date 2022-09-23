@@ -164,17 +164,19 @@ function Apex() {
         <div className="w-full flex-1">
           <ApexChart
             options={detectionResource({
-              max: 2500,
-              min: 1000,
-              sentence: '이상치',
+              max: 25,
+              min: 10,
+              sentence: '정상 범위',
             })}
-            series={[
-              {
-                name: '기준치',
-                type: 'line',
-                data: dataSets.map((data) => data.total),
-              },
-            ]}
+            series={resourceNine.series.map((test) => {
+              return {
+                ...test,
+                color:
+                  test.data[0].y < 10 || test.data[0].y > 25
+                    ? '#ff6161'
+                    : '#3367f6',
+              };
+            })}
           ></ApexChart>
         </div>
       </div>

@@ -565,17 +565,17 @@ export const resourceNine = {
     },
     {
       name: '유튜브',
-      data: [{ x: -36.4, y: 13.4 }],
+      data: [{ x: 36.4, y: 13.4 }],
       color: '#FF6161',
     },
     {
       name: '트위터',
-      data: [{ x: -36.4, y: -13.4 }],
+      data: [{ x: 36.4, y: 13.4 }],
       color: '#FF6161',
     },
     {
       name: '네이버블로그',
-      data: [{ x: 36.4, y: -13.4 }],
+      data: [{ x: 36.4, y: 13.4 }],
       color: '#3367F6',
     },
     {
@@ -591,7 +591,7 @@ export const resourceNine = {
 
     {
       name: '네이버뉴스',
-      data: [{ x: 0, y: -36.4 }],
+      data: [{ x: 0, y: 36.4 }],
     },
     // {
     //   name: '트위터',
@@ -1097,6 +1097,9 @@ export const detectionResource = ({ sentence, max, min }: Annotation) => {
 
       zoom: { enabled: false },
       colors: ['#3367f6'],
+    },
+    markers: {
+      size: 8,
     },
     annotations: {
       yaxis: [
