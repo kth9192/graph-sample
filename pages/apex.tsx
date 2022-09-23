@@ -253,7 +253,7 @@ function Apex() {
                   },
                   {
                     x: '2022-01-06',
-                    y: 500,
+                    y: 900,
                     fillColor: fixColor(900, 1300, 800),
                   },
                 ],
@@ -267,7 +267,7 @@ function Apex() {
 }
 
 const fixColor = (value: number, max: number, min: number) => {
-  return value < max && value > min ? '#3367f6' : '#ff6161';
+  return value <= max && value >= min ? '#3367f6' : '#ff6161';
 };
 
 export default Apex;
