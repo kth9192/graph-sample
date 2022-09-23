@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import {
   dataSets,
+  detectionBendResource,
   detectionResource,
   multilineOpt,
   resourceEight,
@@ -180,8 +181,93 @@ function Apex() {
           ></ApexChart>
         </div>
       </div>
+      <div className="flex flex-col items-center w-full h-full">
+        <h2> 한계 밴드 차트</h2>
+
+        <div className="w-full flex-1">
+          <ApexChart
+            options={detectionBendResource({
+              max: 25,
+              min: 10,
+              sentence: '정상 범위',
+            })}
+            series={[
+              {
+                name: '최대치',
+                type: 'line',
+                color: '#ff6161',
+                // data: [1000, 800, 900, 700, 800, 1300],
+                data: [
+                  { x: '2022-01-01', y: 1000 },
+                  { x: '2022-01-02', y: 800 },
+                  { x: '2022-01-03', y: 900 },
+                  { x: '2022-01-04', y: 700 },
+                  { x: '2022-01-05', y: 800 },
+                  { x: '2022-01-06', y: 1300 },
+                ],
+              },
+              {
+                name: '최소치',
+                type: 'line',
+                color: '#ff6161',
+                // data: [500, 300, 400, 200, 300, 800],
+                data: [
+                  { x: '2022-01-01', y: 500 },
+                  { x: '2022-01-02', y: 300 },
+                  { x: '2022-01-03', y: 400 },
+                  { x: '2022-01-04', y: 200 },
+                  { x: '2022-01-05', y: 300 },
+                  { x: '2022-01-06', y: 800 },
+                ],
+              },
+              {
+                name: 'count',
+                type: 'scatter',
+                // data: [100, 200, 600, 200, 300, 900],
+
+                data: [
+                  {
+                    x: '2022-01-01',
+                    y: 100,
+                    fillColor: fixColor(100, 1000, 500),
+                  },
+                  {
+                    x: '2022-01-02',
+                    y: 100,
+                    fillColor: fixColor(100, 800, 300),
+                  },
+                  {
+                    x: '2022-01-03',
+                    y: 500,
+                    fillColor: fixColor(500, 900, 400),
+                  },
+                  {
+                    x: '2022-01-04',
+                    y: 200,
+                    fillColor: fixColor(200, 700, 200),
+                  },
+                  {
+                    x: '2022-01-05',
+                    y: 300,
+                    fillColor: fixColor(300, 800, 300),
+                  },
+                  {
+                    x: '2022-01-06',
+                    y: 500,
+                    fillColor: fixColor(900, 1300, 800),
+                  },
+                ],
+              },
+            ]}
+          ></ApexChart>
+        </div>
+      </div>
     </div>
   );
 }
+
+const fixColor = (value: number, max: number, min: number) => {
+  return value < max && value > min ? '#3367f6' : '#ff6161';
+};
 
 export default Apex;

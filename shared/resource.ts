@@ -1121,3 +1121,37 @@ export const detectionResource = ({ sentence, max, min }: Annotation) => {
     },
   } as ApexOptions;
 };
+
+export const detectionBendResource = ({ sentence, max, min }: Annotation) => {
+  return {
+    chart: {
+      id: 'bend',
+
+      zoom: { enabled: false },
+    },
+    xaxis: {
+      categories: [
+        '2022-01-01',
+        '2022-01-02',
+        '2022-01-03',
+        '2022-01-04',
+        '2022-01-05',
+        '2022-01-06',
+      ],
+    },
+    stroke: {
+      width: 1,
+      curve: 'smooth',
+    },
+    markers: {
+      size: [0, 0, 5],
+    },
+    // colors: [
+    //   '#ff6161',
+    //   '#ff6161',
+    //   function ({ value, seriesIndex, w }) {
+    //     return value < max && value > min ? '#3367f6' : '#ff6161';
+    //   },
+    // ],
+  } as ApexOptions;
+};
