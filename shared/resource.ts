@@ -1104,6 +1104,8 @@ export const detectionResource = ({ sentence, max, min }: Annotation) => {
           y: max,
           y2: min,
           borderColor: '#00E396',
+          fillColor: '#00E396',
+          opacity: 0.2,
           label: {
             borderColor: '#00E396',
             style: {
